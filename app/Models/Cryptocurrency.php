@@ -12,11 +12,11 @@ class Cryptocurrency extends Model
 
     protected $table = 'cryptocurrencies';
 
-    protected $appends = ['is_prefer'];
+    protected $fillable = [
+        'name',
+        'alias',
+        'image',
+        'enabled'
+    ];
 
-    public function getIsPreferAttribute()
-    {
-        $is_prefer = PreferredCryptoUser::where('cryptocurrency_id', $this->id)->where('user_id', Auth::id())->exists();
-        return $is_prefer;
-    }
 }

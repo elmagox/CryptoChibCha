@@ -13,14 +13,24 @@ class CryptoList extends Component
     public $cryptocurrencies = [];
     public $preferreds = [];
     public $search = '';
+    protected $listeners = ['refreshList'];
 
 
     public function mount(){
-        $this->cryptocurrencies = Cryptocurrency::all();
+
+//        dd($this->cryptocurrencies);
         $this->getPreferred();
     }
     public function render()
     {
+        $this->cryptocurrencies = DB::table('cryptocurrencies AS c')
+            ->leftJoin('preferred_crypto_user AS pcu', function($query){
+                $query->on( 'c.id', '=', 'pcu.cryptocurrency_id')
+                    ->where('pcu.user_id', '=', Auth::id());
+            })
+            ->select(['c.id', 'c.name', 'c.alias', 'c.image', 'c.enabled', 'pcu.cryptocurrency_id AS is_prefer'])
+            ->get();
+
         if(!empty($this->search)) {
             $this->cryptocurrencies = Cryptocurrency::where('name', 'like', "%{$this->search}%")
                 ->orWhere('alias','like',"%{$this->search}%")
@@ -55,5 +65,9 @@ class CryptoList extends Component
     }
     public function showModal(Cryptocurrency $cryptocurrency){
         $this->emit('showModal', $cryptocurrency);
+    }
+
+    public function refreshList(){
+        $this->mount();
     }
 }

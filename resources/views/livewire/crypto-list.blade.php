@@ -1,8 +1,11 @@
 <div>
+{{--    @dd(count($preferreds))--}}
+    @if(count($preferreds))
+
     <div class="text-bold text-lg my-4">My Preferred Coins</div>
     <div class="flex flex-wrap justify-content-between">
         @foreach($preferreds as $prefer)
-            <div wire:click="addOrRemovePreferred({{$prefer->id}})" class="cursor-pointer px-4 py-5 mb-4 bg-white shadow-lg rounded-lg mx-3 flex items-center">
+            <div wire:click="addOrRemovePreferred({{$prefer->id}})" class="cursor-no-drop px-4 py-5 mb-4 bg-white shadow-lg rounded-lg mx-3 flex items-center">
                     <div class="flex-shrink-0 h-10 w-10">
                         <img class="h-10 w-10 rounded-sm"
                              src="{{$prefer->image}}"
@@ -19,10 +22,11 @@
             </div>
         @endforeach
     </div>
+    @endif
     <div class="flex items-center">
         <div class="text-bold text-lg my-4 mr-4">List Top 100</div>
-        <input type="text" wire:model="search" class="form-input px-3 py-1 rounded-lg mr-4" placeholder="Search crypto...">
-        <button class="bg-gray-500 text-white rounded-lg px-3 py-1">Create a crypto</button>
+        <input type="text" wire:model="search" class="form-input px-3 py-1 rounded-lg mr-4" placeholder="Search crypto..." >
+        <button class="bg-gray-500 text-white rounded-lg px-3 py-1" wire:click="showModal">Create a crypto</button>
     </div>
     <div class="flex flex-col">
         <div class="overflow-x-auto">
