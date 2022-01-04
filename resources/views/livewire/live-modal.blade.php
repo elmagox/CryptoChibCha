@@ -18,10 +18,12 @@
                             <div class="mt-2 flex flex-col">
                                 <label for="">Crypto Alias</label>
                                 <input type="text" class="form-input px-3 py-1 rounded-lg mr-4" wire:model="alias">
+                                @error('alias') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
                             </div>
                             <div class="mt-2 flex flex-col">
                                 <label for="">Crypto Name</label>
                                 <input type="text" class="form-input px-3 py-1 rounded-lg mr-4" wire:model="name">
+                                @error('name') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
                             </div>
                             <div class="mt-2 flex flex-col">
                                 <label for="">Estate</label>
@@ -30,12 +32,14 @@
                                     <option value="1">ENABLED</option>
                                     <option value="0">DISABLED</option>
                                 </select>
+                                @error('enabled') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
                             </div>
                         </div>
 
                         <div class="mt-2 flex flex-col">
                             <label for="">Image URL</label>
                             <input type="text" class="form-input px-3 py-1 rounded-lg mr-4" wire:model="image">
+                            @error('image') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
                         </div>
 
                     </div>

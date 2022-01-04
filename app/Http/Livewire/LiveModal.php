@@ -20,6 +20,7 @@ class LiveModal extends Component
     }
 
     public function showModal($cryptocurrency){
+        $this->resetErrorBag();
         if (!empty($cryptocurrency)){
             $this->id_crypto = $cryptocurrency["id"];
             $this->name = $cryptocurrency["name"];
@@ -32,6 +33,13 @@ class LiveModal extends Component
     }
 
     public function save(){
+        $this->validate([
+            "name" => 'required|max:100',
+            "alias" => 'required|max:100',
+            "image" => 'required|url|max:100',
+            "enabled" => 'required'
+        ]);
+
         if(!empty($this->id_crypto)){
             $cryptocurrency = Cryptocurrency::find($this->id_crypto);
             $cryptocurrency->name = $this->name;
@@ -44,6 +52,7 @@ class LiveModal extends Component
             $this->reset();
             $this->closeModal();
         }else{
+
             Cryptocurrency::create([
                 "name" => $this->name,
                 "alias" => $this->alias,
