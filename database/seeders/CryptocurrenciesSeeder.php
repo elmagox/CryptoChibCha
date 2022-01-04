@@ -76,7 +76,7 @@ class CryptocurrenciesSeeder extends Seeder
                 [
                     "alias" => "xrp",
                     "name" => "XRP",
-                    "image" => "https://assets.coingecko.com/coins/images/44/large/xrp-alias-white-128.png?1605778731",
+                    "image" => "https://assets.coingecko.com/coins/images/44/small/xrp-symbol-white-128.png?1605778731",
                     "enabled" => true,
                     "created_at" => Carbon::now(),
                     "updated_at" => Carbon::now()
@@ -244,7 +244,7 @@ class CryptocurrenciesSeeder extends Seeder
                 [
                     "alias" => "xlm",
                     "name" => "Stellar",
-                    "image" => "https://assets.coingecko.com/coins/images/100/large/Stellar_alias_black_RGB.png?1552356157",
+                    "image" => "https://assets.coingecko.com/coins/images/100/small/Stellar_symbol_black_RGB.png?1552356157",
                     "enabled" => true,
                     "created_at" => Carbon::now(),
                     "updated_at" => Carbon::now()
